@@ -4,8 +4,6 @@ An AI app for next-word prediction using Markov Chains.
 
 ## 1. Set up a Virtual Environment
 
-To avoid any dependency issues, it's recommended to create a virtual environment for your project.
-
 * **Create a virtual environment**:
 
   ```
