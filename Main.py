@@ -1,19 +1,21 @@
 import nltk
-nltk.download('punkt_tab')
 import spacy
 from collections import Counter
 
 # Main class
 def main():
-    # Download the required NLTK resource + Add the spaCy model
-    nltk.download('punkt')
-    nlp = spacy.load('en_core_web_sm')  
+    # Download the required NLTK resource + Add the spaCy model (2):
+    #nltk.download('punkt')
+    #nlp = spacy.load('en_core_web_sm')  
 
     # Read text into a string variable
-    textString = read_text_and_clean("MobyDickBook.txt")
+    stringText = read_text_and_clean("MobyDickBook.txt")
 
-    # Run the function to clean/tokenize .txt file
-    tokenize_the_string(textString)
+    # Run the function to tokenize .txt file
+    tokenText = tokenize_the_string(stringText)
+
+    # Start building the marcov model using tokenized text
+    build_markov_model(tokenText)
 
 # Get the sample text into string format
 def read_text_and_clean(file_path):
@@ -29,18 +31,22 @@ def read_text_and_clean(file_path):
     cleanedText = file_content.lower()
 
     # Remove all punctuation from text
-    for punctuation in ',.?;"-':
-        cleanedText = text.replace(punctuation, "")
+    filteredText = "".join(c for c in cleanedText if c not in ',.?;""-™()•:!')
 
-    return cleanedText
+    return filteredText
 
-# Takes a text file, cleans it, tokenizes it, and saves cleaned word list for later use
+# Takes a string and tokenizes it using nltk
 def tokenize_the_string(stringName):
     # Tokenize the text and create bigrams
-    words = nltk.word_tokenize(stringName.lower())
+    words = nltk.word_tokenize(stringName)
     bigrams = zip(words, words[1:])
     counts = Counter(bigrams)
 
-    # print(counts)
+    return counts
 
-    # return counts
+# Build a dictionary using marcov chains, that returns a nested dictionary
+def build_markov_model(word_list):
+    pass
+
+if __name__ == "__main__":
+    main()
