@@ -5,11 +5,6 @@ import random as rand
 
 # Main class
 def main():
-    # Download the required NLTK resource + Add the spaCy model (2):
-    #nltk.download('punkt')
-    #nltk.download('punkt_tab')
-    #nlp = spacy.load('en_core_web_sm')  
-
     # Read text into a string variable
     string_text = read_text_and_clean("samples/MobyDickBook.txt")
 
