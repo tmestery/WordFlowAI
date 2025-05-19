@@ -1,6 +1,7 @@
 import nltk
 import spacy
 from collections import Counter
+import random as rand
 
 # Main class
 def main():
@@ -10,14 +11,20 @@ def main():
     #nlp = spacy.load('en_core_web_sm')  
 
     # Read text into a string variable
-    string_text = read_text_and_clean("BrownFox.txt")
+    string_text = read_text_and_clean("MobyDickBook.txt")
 
     # Run the function to tokenize .txt file
     token_text = nltk.word_tokenize(string_text)
 
     # Start building the marcov model using tokenized text
-    print("building model")
-    build_markov_model(token_text)
+    print("Building model...")
+    markov_model = build_markov_model(token_text)
+    print("Success!\n")
+
+    # Listen for input from the user
+    input_word = input("Input a word: ").lower()
+    input_length = int(input("How many words to generate: "))
+    print(generate_text(markov_model,input_word,input_length))
 
 
 # Get the sample text into string format
@@ -59,9 +66,31 @@ def build_markov_model(word_list):
         # add the dictionary for this word to the model
         markov_model.update({unique_word : next_word_dict})
     
-    # print the results
-    for dict in markov_model:
-        print(f"The word '{dict}' is followed by: {markov_model[dict]}")
+    return markov_model
+
+
+# given a word, generate a next word using the markov model
+def next_word(model, current_word):
+    # check if the word is in the model
+    if model.get(current_word) == None:
+        return "X"
+    # the word is in the model, sample a random word
+    dict = model[current_word]
+    population = list(dict.keys())
+    probabilities = list(dict.values())
+    next = str(rand.choices(population,probabilities)[0])
+
+    return next
+
+
+# given a word, generate several words using the markov model and next_word()
+def generate_text(model, first_word, length: int):
+    s = ""
+    prev_word = first_word
+    for i in range(length):
+        prev_word = next_word(model,prev_word)
+        s = s + prev_word + " "
+    return s
 
 
 if __name__ == "__main__":
