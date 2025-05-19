@@ -2,7 +2,9 @@
 import streamlit as st
 from Main import read_text_and_clean, build_markov_model, generate_text
 import nltk
+
 nltk.download('punkt')
+nltk.download('punkt_tab')  # Added to fix punkt_tab error
 
 # Read and process text
 string_text = read_text_and_clean("samples/MobyDickBook.txt")
