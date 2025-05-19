@@ -1,6 +1,6 @@
 # Usual imports along with downloading punkt again...
 import streamlit as st
-import Main
+from Main import read_text_and_clean, build_markov_model, generate_text
 import nltk
 nltk.download('punkt')
 
