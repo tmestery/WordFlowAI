@@ -62,3 +62,5 @@ For `spaCy`, you might also need to run:
 ```bash
 python -m spacy download en_core_web_sm
 ```
+
+Note: WordFlowAI is deployed at https://wordflowaiapp.streamlit.app.
