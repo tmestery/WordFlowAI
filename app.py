@@ -3,13 +3,12 @@ import streamlit as st
 from Main import read_text_and_clean, build_markov_model, generate_text, tokenize_text
 
 # Keep this, it's needed to run in streamlit:
-# "  Please use the NLTK Downloader to obtain the resource:"
+# "Please use the NLTK Downloader to obtain the resource:"
 import nltk
 nltk.download('punkt_tab')
 
 # Adding logo (thanks, for now, grok)
-main_logo = "logo.jpg"
-st.logo(main_logo)
+st.logo(main_logo = "logo.jpg")
 
 # Read and process text
 string_text = read_text_and_clean("samples/MobyDickBook.txt")
