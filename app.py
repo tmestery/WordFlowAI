@@ -29,5 +29,5 @@ if st.button("Generate"):
 # Feedback button
 star_map = ["1", "2", "3", "4", "5"]
 selected_star = st.feedback("stars")
-if selected is not None:
+if selected_star is not None:
     st.markdown(f"You selected {star_map[selected_star]} star(s)!")
