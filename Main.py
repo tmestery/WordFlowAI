@@ -11,7 +11,7 @@ def main():
     #nlp = spacy.load('en_core_web_sm')  
 
     # Read text into a string variable
-    string_text = read_text_and_clean("MobyDickBook.txt")
+    string_text = read_text_and_clean("samples/MobyDickBook.txt")
 
     # Run the function to tokenize .txt file
     token_text = nltk.word_tokenize(string_text)
@@ -51,21 +51,19 @@ def build_markov_model(word_list):
     markov_model = {}
     word_counts = Counter(word_list)
 
-    # for every unique word in the text, loop through the text and count all next words
-    for unique_word in word_counts:
-        next_word_dict = {}
-        # loop through the text again, looking for this word
-        for index in range(len(word_list)-1):
-            if(word_list[index] == unique_word):
-                next_word = word_list[index+1]
-                # if this word does not exist in the dictionary, add it, otherwise update the count
-                if next_word_dict.get(next_word) == None:
-                    next_word_dict.update({next_word:1}) 
-                else:
-                    next_word_dict[next_word] += 1
-        # add the dictionary for this word to the model
-        markov_model.update({unique_word : next_word_dict})
-    
+    # loop through the words and count instances of next words
+    for index in range(len(word_list)-1):
+        word = word_list[index]
+        next_word = word_list[index+1]
+        # check if this word has been included in the model
+        if markov_model.get(word) == None:
+            markov_model.update({word:{}})
+        # check if the next word has been included in word's model
+        if markov_model[word].get(next_word) == None:
+            markov_model[word].update({next_word:1})
+        else:
+            markov_model[word][next_word] += 1
+
     return markov_model
 
 
