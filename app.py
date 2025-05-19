@@ -1,14 +1,10 @@
 # Usual imports along with downloading punkt again...
 import streamlit as st
-from Main import read_text_and_clean, build_markov_model, generate_text
-import nltk
-
-nltk.download('punkt')
-nltk.download('punkt_tab')  # Added to fix punkt_tab error
+from Main import read_text_and_clean, build_markov_model, generate_text, tokenize_text
 
 # Read and process text
 string_text = read_text_and_clean("samples/MobyDickBook.txt")
-token_text = nltk.word_tokenize(string_text)
+token_text = tokenize_text(string_text)
 model = build_markov_model(token_text)
 
 # Creates title, and two different places for user input in the UI

@@ -1,6 +1,4 @@
 import nltk
-import spacy
-from collections import Counter
 import random as rand
 
 # Main class
@@ -9,7 +7,7 @@ def main():
     string_text = read_text_and_clean("samples/MobyDickBook.txt")
 
     # Run the function to tokenize .txt file
-    token_text = nltk.word_tokenize(string_text)
+    token_text = tokenize_text(string_text)
 
     # Start building the marcov model using tokenized text
     print("Building model...")
@@ -20,7 +18,6 @@ def main():
     input_word = input("Input a word: ").lower()
     input_length = int(input("How many words to generate: "))
     print(generate_text(markov_model,input_word,input_length))
-
 
 # Get the sample text into string format
 def read_text_and_clean(file_path):
@@ -40,11 +37,13 @@ def read_text_and_clean(file_path):
 
     return filteredText
 
+# Tokenize the text using nltk
+def tokenize_text(text):
+    return nltk.word_tokenize(text)
 
 # Build a dictionary using marcov chains, that returns a nested dictionary
 def build_markov_model(word_list):
     markov_model = {}
-    word_counts = Counter(word_list)
 
     # loop through the words and count instances of next words
     for index in range(len(word_list)-1):
@@ -61,7 +60,6 @@ def build_markov_model(word_list):
 
     return markov_model
 
-
 # given a word, generate a next word using the markov model
 def next_word(model, current_word):
     # check if the word is in the model
@@ -75,7 +73,6 @@ def next_word(model, current_word):
 
     return next
 
-
 # given a word, generate several words using the markov model and next_word()
 def generate_text(model, first_word, length: int):
     s = ""
@@ -84,7 +81,6 @@ def generate_text(model, first_word, length: int):
         prev_word = next_word(model,prev_word)
         s = s + prev_word + " "
     return s
-
 
 if __name__ == "__main__":
     main()
