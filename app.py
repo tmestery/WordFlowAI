@@ -4,6 +4,8 @@ from Main import read_text_and_clean, build_markov_model, generate_text
 import nltk
 nltk.download('punkt')
 
+model = build_markov_model(token_text)
+
 # Creates title, and two different places for user input in the UI
 st.title("Markov Chain Text Generator")
 input_word = st.text_input("Enter a starting word:")
