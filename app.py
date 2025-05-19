@@ -4,11 +4,6 @@ from Main import read_text_and_clean, build_markov_model, generate_text
 import nltk
 nltk.download('punkt')
 
-# Read and process text
-string_text = read_text_and_clean("samples/MobyDickBook.txt")
-token_text = nltk.word_tokenize(string_text)
-model = build_markov_model(token_text)
-
 # Creates title, and two different places for user input in the UI
 st.title("Markov Chain Text Generator")
 input_word = st.text_input("Enter a starting word:")
