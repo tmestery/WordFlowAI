@@ -8,7 +8,8 @@ import nltk
 nltk.download('punkt_tab')
 
 # Adding logo (thanks, for now, grok)
-st.logo(main_logo = "logo.jpg")
+main_logo = "logo.jpg"
+st.logo(main_logo)
 
 # Read and process text
 string_text = read_text_and_clean("samples/MobyDickBook.txt")
