@@ -4,7 +4,7 @@ import random as rand
 # Main class
 def main():
     # Read text into a string variable
-    string_text = read_text_and_clean("samples/MobyDickBook.txt") + read_text_and_clean("samples/modern_slang.txt") + read_text_and_clean("samples/BrownFox")
+    string_text = read_text_and_clean("samples/MobyDickBook.txt") + read_text_and_clean("samples/modern_slang.txt") + read_text_and_clean("samples/BrownFox.txt")
 
     # Run the function to tokenize .txt file
     token_text = tokenize_text(string_text)
