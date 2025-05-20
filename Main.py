@@ -4,7 +4,7 @@ import random as rand
 # Main class
 def main():
     # Read text into a string variable
-    string_text = read_text_and_clean("samples/MobyDickBook.txt")
+    string_text = read_text_and_clean("samples/MobyDickBook.txt") + read_text_and_clean("samples/modern_slang.txt")
 
     # Run the function to tokenize .txt file
     token_text = tokenize_text(string_text)
@@ -62,9 +62,17 @@ def build_markov_model(word_list):
 
 # given a word, generate a next word using the markov model
 def next_word(model, current_word):
+    # good fallback word list
+    fallback_words = [
+    "the", "of", "and", "a", "to", "in", "is", "that", "it", "for",
+    "on", "you", "with", "as", "I", "was", "at", "be", "this", "have"
+]
+
     # check if the word is in the model
     if model.get(current_word) == None:
-        return "X"
+        rand_fallback_word = rand.choice(fallback_words)
+        return rand_fallback_word
+        
     # the word is in the model, sample a random word
     dict = model[current_word]
     population = list(dict.keys())
