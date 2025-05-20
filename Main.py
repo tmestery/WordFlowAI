@@ -33,7 +33,7 @@ def read_text_and_clean(file_path):
     cleanedText = file_content.lower()
 
     # Remove all punctuation from text
-    filteredText = "".join(c for c in cleanedText if c not in ',.?;""-™()•:!')
+    filteredText = "".join(c for c in cleanedText if c not in ',.?;""-™()•:!”“—')
 
     return filteredText
 
