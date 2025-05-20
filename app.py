@@ -12,7 +12,7 @@ main_logo = "logo.jpg"
 st.logo(main_logo)
 
 # Read and process text
-string_text = read_text_and_clean("samples/MobyDickBook.txt")
+string_text = read_text_and_clean("samples/MobyDickBook.txt") + read_text_and_clean("samples/modern_slang.txt") + read_text_and_clean("samples/BrownFox")
 token_text = tokenize_text(string_text)
 model = build_markov_model(token_text)
 
